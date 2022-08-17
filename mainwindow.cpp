@@ -66,8 +66,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->statusBar->addPermanentWidget(permanent);
     ui->tabWidget->setStyleSheet("QTabWidget:pane {border-top:0px;background:  transparent; }");
 
-
-
 }
 
 MainWindow::~MainWindow()
@@ -75,9 +73,6 @@ MainWindow::~MainWindow()
     delete ui;
     capture.release();
 }
-
-
-
 
 void MainWindow::on_action_Dock_triggered()
 {
@@ -87,10 +82,10 @@ void MainWindow::on_action_Dock_triggered()
 void MainWindow::on_action_Open_triggered()
 {
     QStringList srcDirPathListS = QFileDialog::getOpenFileNames(this, tr("选择图片"), "E:/Qt/qtworks/MainWindow/images", tr("图像文件(*.jpg *.png *.bmp)"));
-    if(srcDirPathListS.size()>0)
-    {
+    if(srcDirPathListS.size()>0) {
         ui->tabWidget->setCurrentIndex(0);
     }
+
     if(srcDirPathListS.size()>=3){
         srcDirPathList =srcDirPathListS;
         srcDirPathListS.clear();
@@ -123,6 +118,7 @@ void MainWindow::on_action_Open_triggered()
         ui->pushButton_4->setDisabled(false);
         ui->label_other_1->setVisible(true);
         ui->label_other_3->setVisible(true);
+
     }else if(srcDirPathListS.size()==1){
         srcDirPathList =srcDirPathListS;
         srcDirPathListS.clear();
@@ -146,8 +142,8 @@ void MainWindow::on_action_Open_triggered()
         ui->pushButton_4->setDisabled(true);
         ui->label_other_3->setVisible(false);
         ui->label_other_1->setVisible(false);
-    }
-    else if(srcDirPathListS.size()==2){
+
+    } else if(srcDirPathListS.size()==2){
         srcDirPathList =srcDirPathListS;
         srcDirPathListS.clear();
         index =0;
@@ -175,6 +171,7 @@ void MainWindow::on_action_Open_triggered()
         ui->pushButton_4->setDisabled(false);
         ui->label_other_1->setVisible(true);
         ui->label_other_3->setVisible(false);
+
     }
 }
 
@@ -189,8 +186,6 @@ void split(const string& s,vector<int>& sv,const char flag = ' ') {
     return;
 }
 
-
-
 //图片居中显示,图片大小与label大小相适应
 QImage MainWindow::ImageCenter(QImage  qimage,QLabel *qLabel)
 {
@@ -200,13 +195,12 @@ QImage MainWindow::ImageCenter(QImage  qimage,QLabel *qLabel)
 
     double dWidthRatio = 1.0*imageSize.width() / labelSize.width();
     double dHeightRatio = 1.0*imageSize.height() / labelSize.height();
-    if (dWidthRatio>dHeightRatio)
-    {
+    if (dWidthRatio>dHeightRatio) {
         image = qimage.scaledToWidth(labelSize.width());
-    }
-    else
-    {
+
+    }else{
         image = qimage.scaledToHeight(labelSize.height());
+
     }
     return image;
 
@@ -216,10 +210,10 @@ QImage MainWindow::ImageCenter(QImage  qimage,QLabel *qLabel)
 void MainWindow::on_pushButton_clicked()
 {
     QStringList srcDirPathListS = QFileDialog::getOpenFileNames(this, tr("选择图片"), "E:/Qt/qtworks/MainWindow/images", tr("图像文件(*.jpg *.png *.bmp)"));
-    if(srcDirPathListS.size()>0)
-    {
+    if(srcDirPathListS.size()>0) {
         ui->tabWidget->setCurrentIndex(0);
     }
+
     if(srcDirPathListS.size()>=3){
         srcDirPathList =srcDirPathListS;
         srcDirPathListS.clear();
@@ -252,6 +246,7 @@ void MainWindow::on_pushButton_clicked()
         ui->pushButton_4->setDisabled(false);
         ui->label_other_1->setVisible(true);
         ui->label_other_3->setVisible(true);
+
     }else if(srcDirPathListS.size()==1){
         srcDirPathList =srcDirPathListS;
         srcDirPathListS.clear();
@@ -275,8 +270,8 @@ void MainWindow::on_pushButton_clicked()
         ui->pushButton_4->setDisabled(true);
         ui->label_other_3->setVisible(false);
         ui->label_other_1->setVisible(false);
-    }
-    else if(srcDirPathListS.size()==2){
+
+    }else if(srcDirPathListS.size()==2){
         srcDirPathList =srcDirPathListS;
         srcDirPathListS.clear();
         index =0;
@@ -310,8 +305,7 @@ void MainWindow::on_pushButton_clicked()
 //上一张
 void MainWindow::on_pushButton_3_clicked()
 {
-    if(srcDirPathList.size()>=3)
-    {
+    if(srcDirPathList.size()>=3) {
         index=qAbs(index+srcDirPathList.size()-1);
         int i = index%srcDirPathList.size();
         //qDebug("%d",i);
@@ -339,8 +333,8 @@ void MainWindow::on_pushButton_3_clicked()
         QImage Image2 = ImageCenter(image2,ui->label_other_3);
         ui->label_other_3->setPixmap(QPixmap::fromImage(Image2));
         ui->label_other_3->setAlignment(Qt::AlignCenter);
-    }
-    else if(srcDirPathList.size()==2){
+
+    } else if(srcDirPathList.size()==2){
         index=qAbs(index+srcDirPathList.size()-1);
         int i = index%srcDirPathList.size();
         //qDebug("%d",i);
@@ -368,9 +362,7 @@ void MainWindow::on_pushButton_3_clicked()
 //下一张
 void MainWindow::on_pushButton_4_clicked()
 {
-
-    if(srcDirPathList.size()>=3)
-    {
+    if(srcDirPathList.size()>=3) {
         index=qAbs(index+1);
         int i = index%srcDirPathList.size();
         // qDebug("%d",i);
@@ -387,7 +379,6 @@ void MainWindow::on_pushButton_4_clicked()
         QLabel *label=ui->statusBar->findChild<QLabel *>("status");
         label->setText(srcDirPath);
 
-
         QString src1 = srcDirPathList.at((index+1)%srcDirPathList.size());
         QImage image1(src1);
         QImage Image1 = ImageCenter(image1,ui->label_other_1);
@@ -399,8 +390,8 @@ void MainWindow::on_pushButton_4_clicked()
         QImage Image2 = ImageCenter(image2,ui->label_other_3);
         ui->label_other_3->setPixmap(QPixmap::fromImage(Image2));
         ui->label_other_3->setAlignment(Qt::AlignCenter);
-    }
-    else if(srcDirPathList.size()==2){
+
+    } else if(srcDirPathList.size()==2){
         index=qAbs(index+1);
         int i = index%srcDirPathList.size();
         QString srcDirPath = srcDirPathList.at(i);
@@ -425,14 +416,11 @@ void MainWindow::on_pushButton_4_clicked()
 }
 
 
-
-
-
-
 //保存
 void MainWindow::on_action_Save_triggered()
 {
-    if(ui->checkBox->isChecked()){//要加水印
+    //要加水印
+    if(ui->checkBox->isChecked()){
 
         if(ui->label_show->pixmap()!=nullptr){
 
@@ -450,30 +438,26 @@ void MainWindow::on_action_Save_triggered()
                     b=oldcolor2.blue();
                     g=oldcolor2.green();
 
-                    if(r==0&&b==0&&g==0)
-                    {
+                    if(r==0&&b==0&&g==0){
                         image2.setPixelColor(j,i,qRgb(0,0,0));
-                    }else
-                    {
+
+                    }else {
                         //image.setPixelColor(j,i,qRgb(red,blue,green));
                     }
                 }
 
             }
 
-
             QString filename = QFileDialog::getSaveFileName(this,
                                                             tr("保存图片"),
                                                             "E:/Qtworks/MainWindow/images/signed_images.png",
                                                             tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
-            if (filename.isEmpty())
-            {
+            if (filename.isEmpty()) {
                 return;
-            }
-            else
-            {
-                if (!(image2.save(filename))) //保存图像
-                {
+
+            } else {
+                //保存图像
+                if (!(image2.save(filename)))  {
 
                     QMessageBox::information(this,
                                              tr("图片保存成功！"),
@@ -483,27 +467,22 @@ void MainWindow::on_action_Save_triggered()
                 ui->statusBar->showMessage("图片保存成功！");
             }
 
-        }
-        else{
+        } else{
             QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
         }
 
-    }
-    else //不加水印
-    {
+    } else {//不加水印
         if(ui->label_show->pixmap()!=nullptr){
             QString filename = QFileDialog::getSaveFileName(this,
                                                             tr("保存图片"),
                                                             "E:/Qtworks/MainWindow/images/images.png",
                                                             tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
-            if (filename.isEmpty())
-            {
+            if (filename.isEmpty()) {
                 return;
-            }
-            else
-            {
-                if (!(ui->label_show->pixmap()->toImage().save(filename))) //保存图像
-                {
+
+            } else {
+                //保存图像
+                if (!(ui->label_show->pixmap()->toImage().save(filename)))  {
 
                     QMessageBox::information(this,
                                              tr("图片保存成功！"),
@@ -519,18 +498,13 @@ void MainWindow::on_action_Save_triggered()
     }
 }
 
-
-
-
 //灰度化
 QImage MainWindow::gray(QImage image){
     QImage newImage =image.convertToFormat(QImage::Format_ARGB32);
     QColor oldColor;
 
-    for(int y = 0; y < newImage.height(); y++)
-    {
-        for(int x = 0; x < newImage.width(); x++)
-        {
+    for(int y = 0; y < newImage.height(); y++) {
+        for(int x = 0; x < newImage.width(); x++) {
             oldColor = QColor(image.pixel(x,y));
             int average = (oldColor.red() + oldColor.green() + oldColor.blue()) / 3;
             newImage.setPixel(x, y, qRgb(average, average, average));
@@ -550,9 +524,10 @@ void MainWindow::on_pushButton_gray_clicked()
         QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
+
     }
 }
 
@@ -564,18 +539,15 @@ QImage MainWindow::junzhi(QImage image){
         {1,1,1}};
     int sizeKernel = 3;
     int sumKernel = 9;
+
     QColor color;
-    for(int x = sizeKernel/2;x<image.width() - sizeKernel/2;x++)
-    {
-        for(int y= sizeKernel/2;y<image.height() - sizeKernel/2;y++)
-        {
+    for(int x = sizeKernel/2;x<image.width() - sizeKernel/2;x++) {
+        for(int y= sizeKernel/2;y<image.height() - sizeKernel/2;y++) {
             int r = 0;
             int g = 0;
             int b = 0;
-            for(int i = -sizeKernel/2;i<=sizeKernel/2;i++)
-            {
-                for(int j = -sizeKernel/2;j<=sizeKernel/2;j++)
-                {
+            for(int i = -sizeKernel/2;i<=sizeKernel/2;i++) {
+                for(int j = -sizeKernel/2;j<=sizeKernel/2;j++) {
                     color = QColor(image.pixel(x+i,y+j));
                     r+=color.red()*kernel[sizeKernel/2+i][sizeKernel/2+j];
                     g+=color.green()*kernel[sizeKernel/2+i][sizeKernel/2+j];
@@ -601,12 +573,11 @@ void MainWindow::on_pushButton_junzhi_clicked()
         QImage Image=ImageCenter(image,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
-
 
 //翻译
 void MainWindow::on_action_L_triggered()
@@ -614,11 +585,11 @@ void MainWindow::on_action_L_triggered()
     QTranslator translator;
     if(language){
         translator.load("E:/Qt/qtworks/MainWindow/zh_tr.qm");
-    }
-    else
-    {
+
+    } else {
         translator.load("E:/Qt/qtworks/MainWindow/en_tr.qm");
     }
+
     QApplication *qapp;
     qapp->installTranslator(&translator);
     language=!language;
@@ -635,8 +606,7 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
         int pixels = image.width() * image.height();
         unsigned int *data = (unsigned int *)image.bits();
 
-        for (int i = 0; i < pixels; ++i)
-        {
+        for (int i = 0; i < pixels; ++i) {
             red= qRed(data[i])+ value;
             red = (red < 0x00) ? 0x00 : (red > 0xff) ? 0xff : red;
             green= qGreen(data[i]) + value;
@@ -645,12 +615,13 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
             blue =  (blue  < 0x00) ? 0x00 : (blue  > 0xff) ? 0xff : blue ;
             data[i] = qRgba(red, green, blue, qAlpha(data[i]));
         }
+
         QImage Image=ImageCenter(image,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
         ui->label_light->setText(QString::number(value));
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 
@@ -673,10 +644,9 @@ QImage MainWindow::bianyuan(QImage image){
     int b1 = 0;
     int rgb1 = 0;
     int a = 0;
-    for( int y = 0; y < image.height() - 1; y++)
-    {
-        for(int x = 0; x < image.width() - 1; x++)
-        {
+
+    for( int y = 0; y < image.height() - 1; y++) {
+        for(int x = 0; x < image.width() - 1; x++) {
             color0 =   QColor ( image.pixel(x,y));
             color1 =   QColor ( image.pixel(x + 1,y));
             color2 =   QColor ( image.pixel(x,y + 1));
@@ -701,7 +671,6 @@ QImage MainWindow::bianyuan(QImage image){
 }
 
 
-
 //边缘检测
 void MainWindow::on_pushButton_junzhi_2_clicked()
 {
@@ -711,8 +680,8 @@ void MainWindow::on_pushButton_junzhi_2_clicked()
         QImage Image=ImageCenter(newImage,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -734,10 +703,9 @@ QImage MainWindow::fuhe(QImage images){
     int b1 = 0;
     int rgb1 = 0;
     int a = 0;
-    for( int y = 0; y < images.height() - 1; y++)
-    {
-        for(int x = 0; x < images.width() - 1; x++)
-        {
+
+    for( int y = 0; y < images.height() - 1; y++) {
+        for(int x = 0; x < images.width() - 1; x++) {
             color0 =   QColor ( images.pixel(x,y));
             color1 =   QColor ( images.pixel(x + 1,y));
             color2 =   QColor ( images.pixel(x,y + 1));
@@ -758,6 +726,7 @@ QImage MainWindow::fuhe(QImage images){
             image2.setPixel(x,y,qRgb(a,a,a));
         }
     }
+
     QImage image(origin_path);
     int red, green, blue;
     int red2,green2,blue2;
@@ -766,8 +735,7 @@ QImage MainWindow::fuhe(QImage images){
     unsigned int *data = (unsigned int *)image.bits();
     unsigned int *data2 = (unsigned int *)image2.bits();
 
-    for (int i = 0; i < pixels; ++i)
-    {
+    for (int i = 0; i < pixels; ++i) {
         red= qRed(data[i]);
         red2=qRed(data2[i])*0.5+red*0.5;
         red2 = (red2 < 0x00) ? 0x00 : (red2 > 0xff) ? 0xff : red2;
@@ -796,8 +764,8 @@ void MainWindow::on_pushButton_junzhi_3_clicked()
         QImage Image=ImageCenter(image2,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -807,6 +775,7 @@ void MainWindow::on_pushButton_junzhi_3_clicked()
 void MainWindow::on_horizontalSlider_2_valueChanged(int value1)
 {
     float value=(float)value1/100;
+
     if(origin_path!=nullptr){
         QImage images(origin_path);
         QImage image2 =images.convertToFormat(QImage::Format_ARGB32);
@@ -823,10 +792,9 @@ void MainWindow::on_horizontalSlider_2_valueChanged(int value1)
         int b1 = 0;
         int rgb1 = 0;
         int a = 0;
-        for( int y = 0; y < images.height() - 1; y++)
-        {
-            for(int x = 0; x < images.width() - 1; x++)
-            {
+
+        for( int y = 0; y < images.height() - 1; y++) {
+            for(int x = 0; x < images.width() - 1; x++) {
                 color0 =   QColor ( images.pixel(x,y));
                 color1 =   QColor ( images.pixel(x + 1,y));
                 color2 =   QColor ( images.pixel(x,y + 1));
@@ -847,6 +815,7 @@ void MainWindow::on_horizontalSlider_2_valueChanged(int value1)
                 image2.setPixel(x,y,qRgb(a,a,a));
             }
         }
+
         QImage image(origin_path);
         //    QImage image2(label->pixmap()->toImage());
         int red, green, blue;
@@ -856,8 +825,7 @@ void MainWindow::on_horizontalSlider_2_valueChanged(int value1)
         unsigned int *data = (unsigned int *)image.bits();
         unsigned int *data2 = (unsigned int *)image2.bits();
 
-        for (int i = 0; i < pixels; ++i)
-        {
+        for (int i = 0; i < pixels; ++i) {
             red= qRed(data[i]);
             red2=qRed(data2[i])*value+red*(1-value);
             red2 = (red2 < 0x00) ? 0x00 : (red2 > 0xff) ? 0xff : red2;
@@ -872,12 +840,13 @@ void MainWindow::on_horizontalSlider_2_valueChanged(int value1)
 
             data2[i] = qRgba(red2, green2, blue2, qAlpha(data2[i]));
         }
+
         QImage Image=ImageCenter(image2,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
         ui->label_fuhe->setText(QString::number(value).append(":").append(QString::number(1-value)));
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -886,7 +855,8 @@ void MainWindow::on_horizontalSlider_2_valueChanged(int value1)
 //保存
 void MainWindow::on_pushButton_save_clicked()
 {
-    if(ui->checkBox->isChecked()){//要加水印
+    //要加水印
+    if(ui->checkBox->isChecked()){
         if(ui->label_show->pixmap()!=nullptr){
 
             QImage image2(ui->label_show->pixmap()->toImage());
@@ -903,30 +873,26 @@ void MainWindow::on_pushButton_save_clicked()
                     b=oldcolor2.blue();
                     g=oldcolor2.green();
 
-                    if(r==0&&b==0&&g==0)
-                    {
+                    if(r==0&&b==0&&g==0){
                         image2.setPixelColor(j,i,qRgb(0,0,0));
-                    }else
-                    {
+
+                    }else {
                         //image.setPixelColor(j,i,qRgb(red,blue,green));
                     }
                 }
 
             }
 
-
             QString filename = QFileDialog::getSaveFileName(this,
                                                             tr("保存图片"),
                                                             "E:/Qtworks/MainWindow/images/signed_images.png",
                                                             tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
-            if (filename.isEmpty())
-            {
+            if (filename.isEmpty()){
                 return;
-            }
-            else
-            {
-                if (!(image2.save(filename))) //保存图像
-                {
+
+            } else {
+                //保存图像
+                if (!(image2.save(filename)))  {
 
                     QMessageBox::information(this,
                                              tr("图片保存成功！"),
@@ -936,27 +902,23 @@ void MainWindow::on_pushButton_save_clicked()
                 ui->statusBar->showMessage("图片保存成功！");
             }
 
-        }
-        else{
+        } else{
             QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
         }
 
-    }
-    else //不加水印
-    {
+    } else  {
+        //不加水印
         if(ui->label_show->pixmap()!=nullptr){
             QString filename = QFileDialog::getSaveFileName(this,
                                                             tr("保存图片"),
                                                             "E:/Qtworks/MainWindow/images",
                                                             tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
-            if (filename.isEmpty())
-            {
+            if (filename.isEmpty()) {
                 return;
-            }
-            else
-            {
-                if (!(ui->label_show->pixmap()->toImage().save(filename))) //保存图像
-                {
+
+            } else{
+                //保存图像
+                if (!(ui->label_show->pixmap()->toImage().save(filename))) {
 
                     QMessageBox::information(this,
                                              tr("图片保存成功！"),
@@ -973,10 +935,6 @@ void MainWindow::on_pushButton_save_clicked()
 }
 
 
-
-
-
-
 //改变R值滑动条
 void MainWindow::on_horizontalSlider_R_valueChanged(int value)
 {
@@ -989,6 +947,7 @@ void MainWindow::on_horizontalSlider_R_valueChanged(int value)
         QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
+
     }else{
         QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
@@ -1002,19 +961,23 @@ QImage MainWindow::setRGB(QImage image,int value_r, int value_g, int value_b){
     QColor oldColor;
     int height=image.height();
     int width=image.width();
-    for (int i = 0; i < height; ++i)
-    {
+
+    for (int i = 0; i < height; ++i){
         for(int j=0;j<width;++j){
             oldColor = QColor(image.pixel(j,i));
+
             r=oldColor.red()+value_r;
             if(r>255)
                 r=255;
+
             g=oldColor.green()+value_g;
             if(g>255)
                 g=255;
+
             b=oldColor.blue()+value_b;
             if(b>255)
                 b=255;
+
             image.setPixel(j,i, qRgb(r, g, b));
         }
     }
@@ -1030,6 +993,7 @@ void MainWindow::on_pushButton_origin_clicked()
         QImage Image=ImageCenter(image,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
+
     }else{
         QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
@@ -1048,6 +1012,7 @@ void MainWindow::on_horizontalSlider_G_valueChanged(int value)
         QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
+
     }else{
         QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
@@ -1066,6 +1031,7 @@ void MainWindow::on_horizontalSlider_B_valueChanged(int value)
         QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
+
     }else{
         QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
@@ -1077,6 +1043,7 @@ QImage MainWindow::gamma(QImage image){
     QColor color;
     int height = image.height();
     int width = image.width();
+
     for (int i=0;i<width;i++){
         for(int j=0;j<height;j++){
             color = QColor(image.pixel(i,j));
@@ -1093,8 +1060,6 @@ QImage MainWindow::gamma(QImage image){
 }
 
 
-
-
 //伽马变换按钮
 void MainWindow::on_pushButton_gamma_clicked()
 {
@@ -1104,6 +1069,7 @@ void MainWindow::on_pushButton_gamma_clicked()
         QImage Image=ImageCenter(image,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
+
     }else{
         QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
@@ -1120,27 +1086,31 @@ void MainWindow::on_horizontalSlider_erzhi_valueChanged(int value)
         int height=images.height();
         int width=images.width();
         int bt;
+
         QColor oldColor;
-        for (int i = 0; i < height; ++i)
-        {
+        for (int i = 0; i < height; ++i) {
             for(int j=0;j<width;++j){
                 oldColor = QColor(images.pixel(j,i));
                 bt = oldColor.red();
+
                 if(bt<value){
                     bt=0;
+
                 }else{
                     bt=255;
+
                 }
                 images.setPixel(j,i, qRgb(bt, bt, bt));
 
             }
         }
+
         QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
         ui->label_yuzhi->setText(QString::number(value));
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -1154,12 +1124,10 @@ QImage MainWindow::AdjustContrast(QImage image, int value)
 
     int red, green, blue, nRed, nGreen, nBlue;
 
-    if (value > 0 && value < 256)
-    {
+    if (value > 0 && value < 256) {
         float param = 1 / (1 - value / 256.0) - 1;
 
-        for (int i = 0; i < pixels; ++i)
-        {
+        for (int i = 0; i < pixels; ++i) {
             nRed = qRed(data[i]);
             nGreen = qGreen(data[i]);
             nBlue = qBlue(data[i]);
@@ -1173,11 +1141,8 @@ QImage MainWindow::AdjustContrast(QImage image, int value)
 
             data[i] = qRgba(red, green, blue, qAlpha(data[i]));
         }
-    }
-    else
-    {
-        for (int i = 0; i < pixels; ++i)
-        {
+    } else {
+        for (int i = 0; i < pixels; ++i) {
             nRed = qRed(data[i]);
             nGreen = qGreen(data[i]);
             nBlue = qBlue(data[i]);
@@ -1206,8 +1171,8 @@ void MainWindow::on_horizontalSlider_duibi_valueChanged(int value)
         QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -1226,8 +1191,7 @@ QImage MainWindow::AdjustSaturation(QImage Img, int iSaturateValue)
     float L, S;
     float alpha;
 
-    for (int i = 0; i < pixels; ++i)
-    {
+    for (int i = 0; i < pixels; ++i){
         nRed = qRed(data[i]);
         nGreen = qGreen(data[i]);
         nBlue = qBlue(data[i]);
@@ -1238,8 +1202,7 @@ QImage MainWindow::AdjustSaturation(QImage Img, int iSaturateValue)
         L = 0.5*(maxVal + minVal) / 255.0;
         S = std::max(0.5*delta / L, 0.5*delta / (1 - L));
 
-        if (Increment > 0)
-        {
+        if (Increment > 0) {
             alpha = std::max(S, 1 - Increment);
             alpha = 1.0 / alpha - 1;
             red = nRed + (nRed - L*255.0)*alpha;
@@ -1248,9 +1211,8 @@ QImage MainWindow::AdjustSaturation(QImage Img, int iSaturateValue)
             green = (green < 0x00) ? 0x00 : (green > 0xff) ? 0xff : green;
             blue = nBlue + (nBlue - L*255.0)*alpha;
             blue = (blue < 0x00) ? 0x00 : (blue > 0xff) ? 0xff : blue;
-        }
-        else
-        {
+
+        } else {
             alpha = Increment;
             red = L*255.0 + (nRed - L * 255.0)*(1+alpha);
             red = (red < 0x00) ? 0x00 : (red > 0xff) ? 0xff : red;
@@ -1276,8 +1238,8 @@ void MainWindow::on_horizontalSlider_baohe_valueChanged(int value)
         QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -1288,6 +1250,7 @@ void MainWindow::on_horizontalSlider_baohe_valueChanged(int value)
 void MainWindow::on_action_V_triggered()
 {
     QString video_path = QFileDialog::getOpenFileName(this,tr("选择视频"),"E:/Qt/qtworks/MainWindow/images",tr("Video (*.WMV *.mp4 *.rmvb *.flv)"));
+
     if(video_path!=nullptr){
         //打开视频文件：其实就是建立一个VideoCapture结构
         capture.open(video_path.toStdString());
@@ -1300,15 +1263,12 @@ void MainWindow::on_action_V_triggered()
         //获取整个帧数
         long totalFrameNumber = capture.get(CAP_PROP_FRAME_COUNT);
 
-
         //设置开始帧()
         long frameToStart = 0;
         capture.set(CAP_PROP_POS_FRAMES, frameToStart);
 
         //获取帧率
         double rate = capture.get(CAP_PROP_FPS);
-
-
 
         delay = 1000 / rate;
         timer.start(delay);
@@ -1321,7 +1281,6 @@ void MainWindow::on_action_V_triggered()
 }
 
 
-
 //进度条随视频移动
 void MainWindow::updatePosition(){
     long totalFrameNumber = capture.get(CAP_PROP_FRAME_COUNT);
@@ -1331,15 +1290,15 @@ void MainWindow::updatePosition(){
 }
 
 
-
-
 //秒转分函数
 QString MainWindow::stom(int s){
     QString m;
     if(s/60==0){
         m=QString::number (s%60);
+
     }else{
         m=QString::number (s/60)+":"+QString::number (s%60);
+
     }
     return m;
 }
@@ -1359,8 +1318,7 @@ void MainWindow::onTimeout()
     cout<<"totals:"<<totals<<endl;
     ui->label_12->setText(stom(nows)+"/"+stom(totals));
 
-    if (!capture.read(frame))
-    {
+    if (!capture.read(frame)){
         //ui->textEdit->append(QString::fromLocal8Bit("fail to load video"));
         return;
     }
@@ -1368,8 +1326,8 @@ void MainWindow::onTimeout()
     if(type==1){
         //image=gray2(image);
         cvtColor(frame,frame,CV_BGR2GRAY);
-    }
-    else if(type==2){
+
+    } else if(type==2){
         cvtColor(frame, frame, CV_BGR2GRAY);
         //高斯滤波
         GaussianBlur(frame, frame, Size(3, 3),
@@ -1378,18 +1336,19 @@ void MainWindow::onTimeout()
         int edgeThresh =100;
         Mat Canny_result;
         Canny(frame, frame, edgeThresh, edgeThresh * 3, 3);
-    }else if(type==3)
-    {
+
+    }else if(type==3) {
         //Smooth(frame, frame,Size(3, 3), 0, 0);
         GaussianBlur(frame, frame, Size(3, 3), 0, 0);
-    }
-    else if(type==4){
+
+    } else if(type==4){
         cvtColor(frame,frame,CV_BGR2GRAY);
         threshold(frame, frame, 96, 255, THRESH_BINARY);
+
     }else if (type==5) {
         frame=masaike(frame);
-    }
 
+    }
 
     QImage image=MatToQImage(frame);
 
@@ -1412,44 +1371,40 @@ void MainWindow::onTimeout()
 QImage MainWindow::MatToQImage(const cv::Mat& mat)
 {
     // 8-bits unsigned, NO. OF CHANNELS = 1
-    if (mat.type() == CV_8UC1)
-    {
+    if (mat.type() == CV_8UC1) {
         QImage image(mat.cols, mat.rows, QImage::Format_Indexed8);
         // Set the color table (used to translate colour indexes to qRgb values)
         image.setColorCount(256);
-        for (int i = 0; i < 256; i++)
-        {
+
+        for (int i = 0; i < 256; i++) {
             image.setColor(i, qRgb(i, i, i));
+
         }
         // Copy input Mat
         uchar *pSrc = mat.data;
-        for (int row = 0; row < mat.rows; row++)
-        {
+        for (int row = 0; row < mat.rows; row++) {
             uchar *pDest = image.scanLine(row);
             memcpy(pDest, pSrc, mat.cols);
             pSrc += mat.step;
         }
         return image;
-    }
-    // 8-bits unsigned, NO. OF CHANNELS = 3
-    else if (mat.type() == CV_8UC3)
-    {
+
+    }else if (mat.type() == CV_8UC3){
+        // 8-bits unsigned, NO. OF CHANNELS = 3
         // Copy input Mat
         const uchar *pSrc = (const uchar*)mat.data;
         // Create QImage with same dimensions as input Mat
         QImage image(pSrc, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
         return image.rgbSwapped();
-    }
-    else if (mat.type() == CV_8UC4)
-    {
+
+    } else if (mat.type() == CV_8UC4){
         // Copy input Mat
         const uchar *pSrc = (const uchar*)mat.data;
         // Create QImage with same dimensions as input Mat
         QImage image(pSrc, mat.cols, mat.rows, mat.step, QImage::Format_ARGB32);
         return image.copy();
-    }
-    else
-    {
+
+    } else {
         return QImage();
     }
 }
@@ -1458,13 +1413,13 @@ QImage MainWindow::MatToQImage(const cv::Mat& mat)
 //暂停/播放
 void MainWindow::on_pushButton_6_clicked()
 {
-    if(isstart)
-    {
+    if(isstart) {
         timer.stop();
         isstart=false;
         ui->pushButton_6->setStyleSheet("border-radius:32px;"
                                         "background-image: url(:/myImage/images/start.png);border:none;") ;
-    }else {
+
+    } else {
         timer.start(delay);
         isstart=true;
         ui->pushButton_6->setStyleSheet("border-radius:32px;"
@@ -1523,7 +1478,6 @@ void MainWindow::on_horizontalSlider_suofang_valueChanged(int value)
 }
 
 
-
 Mat MainWindow::masaike(Mat src){
     int width = src.rows;	//图片的长度
     int height = src.cols;	//图片的宽度
@@ -1549,9 +1503,6 @@ Mat MainWindow::masaike(Mat src){
 }
 
 
-
-
-
 //工具栏灰度化
 void MainWindow::on_action_H_triggered()
 {
@@ -1563,8 +1514,8 @@ void MainWindow::on_action_H_triggered()
         QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -1579,8 +1530,8 @@ void MainWindow::on_action_J_triggered()
         QImage Image=ImageCenter(image,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -1595,8 +1546,8 @@ void MainWindow::on_action_B_triggered()
         QImage Image=ImageCenter(newImage,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -1612,6 +1563,7 @@ void MainWindow::on_action_G_triggered()
         QImage Image=ImageCenter(image,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
+
     }else{
         QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
@@ -1627,8 +1579,8 @@ void MainWindow::on_action_Y_triggered()
         QImage Image=ImageCenter(image2,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(Image));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -1651,8 +1603,8 @@ void MainWindow::on_pushButton_turnleft_clicked()
         //QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(images));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -1667,8 +1619,8 @@ void MainWindow::on_pushButton_turnright_clicked()
         //QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(images));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -1681,8 +1633,8 @@ void MainWindow::on_pushButton_turnleft_2_clicked()
         //QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(images));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
@@ -1695,8 +1647,8 @@ void MainWindow::on_pushButton_turnleft_3_clicked()
         //QImage Image=ImageCenter(images,ui->label_show);
         ui->label_show->setPixmap(QPixmap::fromImage(images));
         ui->label_show->setAlignment(Qt::AlignCenter);
-    }
-    else{
+
+    } else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
 }
