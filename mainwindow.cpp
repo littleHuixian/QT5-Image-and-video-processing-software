@@ -33,10 +33,10 @@ using namespace cv;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
-    , beishu(1)
-    ,delay(0)
+  , beishu(1)
+  ,delay(0)
 {
-    ui->setupUi(this);          
+    ui->setupUi(this);
     ui->pushButton_3->setDisabled(true);
     ui->pushButton_4->setDisabled(true);
 
@@ -105,7 +105,7 @@ void MainWindow::on_action_Open_triggered()
         ui->label_other->setPixmap(QPixmap::fromImage(images));
         ui->label_other->setAlignment(Qt::AlignCenter);
         //状态栏显示图片路径
-       QLabel *label=ui->statusBar->findChild<QLabel *>("status");
+        QLabel *label=ui->statusBar->findChild<QLabel *>("status");
         label->setText(srcDirPath);
 
         QString src1 = srcDirPathList.at((index+1)%srcDirPathList.size());
@@ -146,36 +146,36 @@ void MainWindow::on_action_Open_triggered()
         ui->pushButton_4->setDisabled(true);
         ui->label_other_3->setVisible(false);
         ui->label_other_1->setVisible(false);
-     }
+    }
     else if(srcDirPathListS.size()==2){
-            srcDirPathList =srcDirPathListS;
-            srcDirPathListS.clear();
-            index =0;
-            QString srcDirPath = srcDirPathList.at(index);
-            QImage image(srcDirPath);
-            QImage Image=ImageCenter(image,ui->label_show);
-            ui->label_show->setPixmap(QPixmap::fromImage(Image));
-            ui->label_show->setAlignment(Qt::AlignCenter);
-            origin_path=srcDirPath;
-            QImage images=ImageCenter(image,ui->label_other);
-            ui->label_other->setPixmap(QPixmap::fromImage(images));
-            ui->label_other->setAlignment(Qt::AlignCenter);
-            //状态栏显示图片路径
-            QLabel *label=ui->statusBar->findChild<QLabel *>("status");
-            label->setText(srcDirPath);
-            //有图片触发事件
-            //isImage=true;
-            //qDebug("%d",srcDirPathList.size());
-            QString src1 = srcDirPathList.at((index+1)%srcDirPathList.size());
-            QImage image1(src1);
-            QImage Image1 = ImageCenter(image1,ui->label_other_1);
-            ui->label_other_1->setPixmap(QPixmap::fromImage(Image1));
-            ui->label_other_1->setAlignment(Qt::AlignCenter);
-            ui->pushButton_3->setDisabled(false);
-            ui->pushButton_4->setDisabled(false);
-            ui->label_other_1->setVisible(true);
-            ui->label_other_3->setVisible(false);
-           }
+        srcDirPathList =srcDirPathListS;
+        srcDirPathListS.clear();
+        index =0;
+        QString srcDirPath = srcDirPathList.at(index);
+        QImage image(srcDirPath);
+        QImage Image=ImageCenter(image,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
+        origin_path=srcDirPath;
+        QImage images=ImageCenter(image,ui->label_other);
+        ui->label_other->setPixmap(QPixmap::fromImage(images));
+        ui->label_other->setAlignment(Qt::AlignCenter);
+        //状态栏显示图片路径
+        QLabel *label=ui->statusBar->findChild<QLabel *>("status");
+        label->setText(srcDirPath);
+        //有图片触发事件
+        //isImage=true;
+        //qDebug("%d",srcDirPathList.size());
+        QString src1 = srcDirPathList.at((index+1)%srcDirPathList.size());
+        QImage image1(src1);
+        QImage Image1 = ImageCenter(image1,ui->label_other_1);
+        ui->label_other_1->setPixmap(QPixmap::fromImage(Image1));
+        ui->label_other_1->setAlignment(Qt::AlignCenter);
+        ui->pushButton_3->setDisabled(false);
+        ui->pushButton_4->setDisabled(false);
+        ui->label_other_1->setVisible(true);
+        ui->label_other_3->setVisible(false);
+    }
 }
 
 void split(const string& s,vector<int>& sv,const char flag = ' ') {
@@ -200,17 +200,17 @@ QImage MainWindow::ImageCenter(QImage  qimage,QLabel *qLabel)
 
     double dWidthRatio = 1.0*imageSize.width() / labelSize.width();
     double dHeightRatio = 1.0*imageSize.height() / labelSize.height();
-            if (dWidthRatio>dHeightRatio)
-            {
-                image = qimage.scaledToWidth(labelSize.width());
-            }
-            else
-            {
-                image = qimage.scaledToHeight(labelSize.height());
-            }
-            return image;
-
+    if (dWidthRatio>dHeightRatio)
+    {
+        image = qimage.scaledToWidth(labelSize.width());
     }
+    else
+    {
+        image = qimage.scaledToHeight(labelSize.height());
+    }
+    return image;
+
+}
 
 //选择图片
 void MainWindow::on_pushButton_clicked()
@@ -234,7 +234,7 @@ void MainWindow::on_pushButton_clicked()
         ui->label_other->setPixmap(QPixmap::fromImage(images));
         ui->label_other->setAlignment(Qt::AlignCenter);
         //状态栏显示图片路径
-       QLabel *label=ui->statusBar->findChild<QLabel *>("status");
+        QLabel *label=ui->statusBar->findChild<QLabel *>("status");
         label->setText(srcDirPath);
 
         QString src1 = srcDirPathList.at((index+1)%srcDirPathList.size());
@@ -275,71 +275,71 @@ void MainWindow::on_pushButton_clicked()
         ui->pushButton_4->setDisabled(true);
         ui->label_other_3->setVisible(false);
         ui->label_other_1->setVisible(false);
-     }
+    }
     else if(srcDirPathListS.size()==2){
-            srcDirPathList =srcDirPathListS;
-            srcDirPathListS.clear();
-            index =0;
-            QString srcDirPath = srcDirPathList.at(index);
-            QImage image(srcDirPath);
-            QImage Image=ImageCenter(image,ui->label_show);
-            ui->label_show->setPixmap(QPixmap::fromImage(Image));
-            ui->label_show->setAlignment(Qt::AlignCenter);
-            origin_path=srcDirPath;
-            QImage images=ImageCenter(image,ui->label_other);
-            ui->label_other->setPixmap(QPixmap::fromImage(images));
-            ui->label_other->setAlignment(Qt::AlignCenter);
-            //状态栏显示图片路径
-            QLabel *label=ui->statusBar->findChild<QLabel *>("status");
-            label->setText(srcDirPath);
-            //有图片触发事件
-            //isImage=true;
-            //qDebug("%d",srcDirPathList.size());
-            QString src1 = srcDirPathList.at((index+1)%srcDirPathList.size());
-            QImage image1(src1);
-            QImage Image1 = ImageCenter(image1,ui->label_other_1);
-            ui->label_other_1->setPixmap(QPixmap::fromImage(Image1));
-            ui->label_other_1->setAlignment(Qt::AlignCenter);
-            ui->pushButton_3->setDisabled(false);
-            ui->pushButton_4->setDisabled(false);
-            ui->label_other_1->setVisible(true);
-            ui->label_other_3->setVisible(false);
-           }
- }
+        srcDirPathList =srcDirPathListS;
+        srcDirPathListS.clear();
+        index =0;
+        QString srcDirPath = srcDirPathList.at(index);
+        QImage image(srcDirPath);
+        QImage Image=ImageCenter(image,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
+        origin_path=srcDirPath;
+        QImage images=ImageCenter(image,ui->label_other);
+        ui->label_other->setPixmap(QPixmap::fromImage(images));
+        ui->label_other->setAlignment(Qt::AlignCenter);
+        //状态栏显示图片路径
+        QLabel *label=ui->statusBar->findChild<QLabel *>("status");
+        label->setText(srcDirPath);
+        //有图片触发事件
+        //isImage=true;
+        //qDebug("%d",srcDirPathList.size());
+        QString src1 = srcDirPathList.at((index+1)%srcDirPathList.size());
+        QImage image1(src1);
+        QImage Image1 = ImageCenter(image1,ui->label_other_1);
+        ui->label_other_1->setPixmap(QPixmap::fromImage(Image1));
+        ui->label_other_1->setAlignment(Qt::AlignCenter);
+        ui->pushButton_3->setDisabled(false);
+        ui->pushButton_4->setDisabled(false);
+        ui->label_other_1->setVisible(true);
+        ui->label_other_3->setVisible(false);
+    }
+}
 
 //上一张
 void MainWindow::on_pushButton_3_clicked()
 {
     if(srcDirPathList.size()>=3)
     {
-    index=qAbs(index+srcDirPathList.size()-1);
-    int i = index%srcDirPathList.size();
-    //qDebug("%d",i);
-    QString srcDirPath = srcDirPathList.at(i);
-    QImage image(srcDirPath);
-    QImage Image=ImageCenter(image,ui->label_show);
-    ui->label_show->setPixmap(QPixmap::fromImage(Image));
-    ui->label_show->setAlignment(Qt::AlignCenter);
-    origin_path=srcDirPath;
-    QImage images3=ImageCenter(image,ui->label_other);
-    ui->label_other->setPixmap(QPixmap::fromImage(images3));
-    ui->label_other->setAlignment(Qt::AlignCenter);
-    //状态栏显示图片路径
-    QLabel *label=ui->statusBar->findChild<QLabel *>("status");
-    label->setText(srcDirPath);
+        index=qAbs(index+srcDirPathList.size()-1);
+        int i = index%srcDirPathList.size();
+        //qDebug("%d",i);
+        QString srcDirPath = srcDirPathList.at(i);
+        QImage image(srcDirPath);
+        QImage Image=ImageCenter(image,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
+        origin_path=srcDirPath;
+        QImage images3=ImageCenter(image,ui->label_other);
+        ui->label_other->setPixmap(QPixmap::fromImage(images3));
+        ui->label_other->setAlignment(Qt::AlignCenter);
+        //状态栏显示图片路径
+        QLabel *label=ui->statusBar->findChild<QLabel *>("status");
+        label->setText(srcDirPath);
 
-    QString src1 = srcDirPathList.at(qAbs(index+srcDirPathList.size()-1)%srcDirPathList.size());
-    QImage image1(src1);
-    QImage Image1 = ImageCenter(image1,ui->label_other_1);
-    ui->label_other_1->setPixmap(QPixmap::fromImage(Image1));
-    ui->label_other_1->setAlignment(Qt::AlignCenter);
+        QString src1 = srcDirPathList.at(qAbs(index+srcDirPathList.size()-1)%srcDirPathList.size());
+        QImage image1(src1);
+        QImage Image1 = ImageCenter(image1,ui->label_other_1);
+        ui->label_other_1->setPixmap(QPixmap::fromImage(Image1));
+        ui->label_other_1->setAlignment(Qt::AlignCenter);
 
-    QString src2 = srcDirPathList.at(qAbs(index+srcDirPathList.size()-2)%srcDirPathList.size());
-    QImage image2(src2);
-    QImage Image2 = ImageCenter(image2,ui->label_other_3);
-    ui->label_other_3->setPixmap(QPixmap::fromImage(Image2));
-    ui->label_other_3->setAlignment(Qt::AlignCenter);
-}
+        QString src2 = srcDirPathList.at(qAbs(index+srcDirPathList.size()-2)%srcDirPathList.size());
+        QImage image2(src2);
+        QImage Image2 = ImageCenter(image2,ui->label_other_3);
+        ui->label_other_3->setPixmap(QPixmap::fromImage(Image2));
+        ui->label_other_3->setAlignment(Qt::AlignCenter);
+    }
     else if(srcDirPathList.size()==2){
         index=qAbs(index+srcDirPathList.size()-1);
         int i = index%srcDirPathList.size();
@@ -371,35 +371,35 @@ void MainWindow::on_pushButton_4_clicked()
 
     if(srcDirPathList.size()>=3)
     {
-    index=qAbs(index+1);
-    int i = index%srcDirPathList.size();
-   // qDebug("%d",i);
-    QString srcDirPath = srcDirPathList.at(i);
-    QImage image(srcDirPath);
-    QImage Image=ImageCenter(image,ui->label_show);
-    ui->label_show->setPixmap(QPixmap::fromImage(Image));
-    ui->label_show->setAlignment(Qt::AlignCenter);
-    origin_path=srcDirPath;
-    QImage images1=ImageCenter(image,ui->label_other);
-    ui->label_other->setPixmap(QPixmap::fromImage(images1));
-    ui->label_other->setAlignment(Qt::AlignCenter);
-    //状态栏显示图片路径
-    QLabel *label=ui->statusBar->findChild<QLabel *>("status");
-    label->setText(srcDirPath);
+        index=qAbs(index+1);
+        int i = index%srcDirPathList.size();
+        // qDebug("%d",i);
+        QString srcDirPath = srcDirPathList.at(i);
+        QImage image(srcDirPath);
+        QImage Image=ImageCenter(image,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
+        origin_path=srcDirPath;
+        QImage images1=ImageCenter(image,ui->label_other);
+        ui->label_other->setPixmap(QPixmap::fromImage(images1));
+        ui->label_other->setAlignment(Qt::AlignCenter);
+        //状态栏显示图片路径
+        QLabel *label=ui->statusBar->findChild<QLabel *>("status");
+        label->setText(srcDirPath);
 
 
-    QString src1 = srcDirPathList.at((index+1)%srcDirPathList.size());
-    QImage image1(src1);
-    QImage Image1 = ImageCenter(image1,ui->label_other_1);
-    ui->label_other_1->setPixmap(QPixmap::fromImage(Image1));
-    ui->label_other_1->setAlignment(Qt::AlignCenter);
+        QString src1 = srcDirPathList.at((index+1)%srcDirPathList.size());
+        QImage image1(src1);
+        QImage Image1 = ImageCenter(image1,ui->label_other_1);
+        ui->label_other_1->setPixmap(QPixmap::fromImage(Image1));
+        ui->label_other_1->setAlignment(Qt::AlignCenter);
 
-    QString src2 = srcDirPathList.at((index+2)%srcDirPathList.size());
-    QImage image2(src2);
-    QImage Image2 = ImageCenter(image2,ui->label_other_3);
-    ui->label_other_3->setPixmap(QPixmap::fromImage(Image2));
-    ui->label_other_3->setAlignment(Qt::AlignCenter);
-}
+        QString src2 = srcDirPathList.at((index+2)%srcDirPathList.size());
+        QImage image2(src2);
+        QImage Image2 = ImageCenter(image2,ui->label_other_3);
+        ui->label_other_3->setPixmap(QPixmap::fromImage(Image2));
+        ui->label_other_3->setAlignment(Qt::AlignCenter);
+    }
     else if(srcDirPathList.size()==2){
         index=qAbs(index+1);
         int i = index%srcDirPathList.size();
@@ -432,70 +432,70 @@ void MainWindow::on_pushButton_4_clicked()
 //保存
 void MainWindow::on_action_Save_triggered()
 {
-        if(ui->checkBox->isChecked()){//要加水印
+    if(ui->checkBox->isChecked()){//要加水印
 
         if(ui->label_show->pixmap()!=nullptr){
 
             QImage image2(ui->label_show->pixmap()->toImage());
             QImage simage("E:/Qt/qtworks/MainWindow/images/name1.png");
 
-                   int swidth = simage.width();
-                   int sheight = simage.height();
-                   int r,b,g;
+            int swidth = simage.width();
+            int sheight = simage.height();
+            int r,b,g;
 
-                   for(int i=0; i<sheight; ++i) {
-                       for(int j=0; j<swidth; ++j) {
-                          QColor oldcolor2=QColor(simage.pixel(j,i));
-                          r=oldcolor2.red();
-                          b=oldcolor2.blue();
-                          g=oldcolor2.green();
+            for(int i=0; i<sheight; ++i) {
+                for(int j=0; j<swidth; ++j) {
+                    QColor oldcolor2=QColor(simage.pixel(j,i));
+                    r=oldcolor2.red();
+                    b=oldcolor2.blue();
+                    g=oldcolor2.green();
 
-                          if(r==0&&b==0&&g==0)
-                          {
-                              image2.setPixelColor(j,i,qRgb(0,0,0));
-                          }else
-                          {
-                              //image.setPixelColor(j,i,qRgb(red,blue,green));
-                          }
-                       }
+                    if(r==0&&b==0&&g==0)
+                    {
+                        image2.setPixelColor(j,i,qRgb(0,0,0));
+                    }else
+                    {
+                        //image.setPixelColor(j,i,qRgb(red,blue,green));
+                    }
+                }
 
-                   }
+            }
 
 
-                QString filename = QFileDialog::getSaveFileName(this,
-                    tr("保存图片"),
-                    "E:/Qtworks/MainWindow/images/signed_images.png",
-                    tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
-                if (filename.isEmpty())
+            QString filename = QFileDialog::getSaveFileName(this,
+                                                            tr("保存图片"),
+                                                            "E:/Qtworks/MainWindow/images/signed_images.png",
+                                                            tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
+            if (filename.isEmpty())
+            {
+                return;
+            }
+            else
+            {
+                if (!(image2.save(filename))) //保存图像
                 {
+
+                    QMessageBox::information(this,
+                                             tr("图片保存成功！"),
+                                             tr("图片保存失败！"));
                     return;
                 }
-                else
-                {
-                    if (!(image2.save(filename))) //保存图像
-                    {
-
-                        QMessageBox::information(this,
-                            tr("图片保存成功！"),
-                            tr("图片保存失败！"));
-                        return;
-                    }
-                    ui->statusBar->showMessage("图片保存成功！");
-                }
+                ui->statusBar->showMessage("图片保存成功！");
+            }
 
         }
         else{
             QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
         }
 
-        }
-        else //不加水印
-        {
-            if(ui->label_show->pixmap()!=nullptr){
-                QString filename = QFileDialog::getSaveFileName(this,
-                tr("保存图片"),
-                "E:/Qtworks/MainWindow/images/images.png",
-                tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
+    }
+    else //不加水印
+    {
+        if(ui->label_show->pixmap()!=nullptr){
+            QString filename = QFileDialog::getSaveFileName(this,
+                                                            tr("保存图片"),
+                                                            "E:/Qtworks/MainWindow/images/images.png",
+                                                            tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
             if (filename.isEmpty())
             {
                 return;
@@ -506,8 +506,8 @@ void MainWindow::on_action_Save_triggered()
                 {
 
                     QMessageBox::information(this,
-                        tr("图片保存成功！"),
-                        tr("图片保存失败！"));
+                                             tr("图片保存成功！"),
+                                             tr("图片保存失败！"));
                     return;
                 }
                 ui->statusBar->showMessage("图片保存成功！");
@@ -516,7 +516,7 @@ void MainWindow::on_action_Save_triggered()
         }else{
             QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
         }
-        }
+    }
 }
 
 
@@ -527,29 +527,29 @@ QImage MainWindow::gray(QImage image){
     QImage newImage =image.convertToFormat(QImage::Format_ARGB32);
     QColor oldColor;
 
-        for(int y = 0; y < newImage.height(); y++)
+    for(int y = 0; y < newImage.height(); y++)
+    {
+        for(int x = 0; x < newImage.width(); x++)
         {
-            for(int x = 0; x < newImage.width(); x++)
-            {
-                oldColor = QColor(image.pixel(x,y));
-                int average = (oldColor.red() + oldColor.green() + oldColor.blue()) / 3;
-                newImage.setPixel(x, y, qRgb(average, average, average));
-            }
+            oldColor = QColor(image.pixel(x,y));
+            int average = (oldColor.red() + oldColor.green() + oldColor.blue()) / 3;
+            newImage.setPixel(x, y, qRgb(average, average, average));
         }
-        return newImage;
+    }
+    return newImage;
 }
 
 //灰度化
 void MainWindow::on_pushButton_gray_clicked()
 {
     if(origin_path!=nullptr){
-    QImage image(origin_path);
+        QImage image(origin_path);
 
-    QImage images=gray(image);
+        QImage images=gray(image);
 
-    QImage Image=ImageCenter(images,ui->label_show);
-    ui->label_show->setPixmap(QPixmap::fromImage(Image));
-    ui->label_show->setAlignment(Qt::AlignCenter);
+        QImage Image=ImageCenter(images,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
     }
     else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
@@ -562,33 +562,33 @@ QImage MainWindow::junzhi(QImage image){
         {1,1,1},
         {1,1,1},
         {1,1,1}};
-        int sizeKernel = 3;
-        int sumKernel = 9;
-        QColor color;
-         for(int x = sizeKernel/2;x<image.width() - sizeKernel/2;x++)
+    int sizeKernel = 3;
+    int sumKernel = 9;
+    QColor color;
+    for(int x = sizeKernel/2;x<image.width() - sizeKernel/2;x++)
+    {
+        for(int y= sizeKernel/2;y<image.height() - sizeKernel/2;y++)
         {
-           for(int y= sizeKernel/2;y<image.height() - sizeKernel/2;y++)
+            int r = 0;
+            int g = 0;
+            int b = 0;
+            for(int i = -sizeKernel/2;i<=sizeKernel/2;i++)
             {
-                int r = 0;
-                int g = 0;
-                int b = 0;
-                for(int i = -sizeKernel/2;i<=sizeKernel/2;i++)
+                for(int j = -sizeKernel/2;j<=sizeKernel/2;j++)
                 {
-                   for(int j = -sizeKernel/2;j<=sizeKernel/2;j++)
-                    {
-                     color = QColor(image.pixel(x+i,y+j));
-                     r+=color.red()*kernel[sizeKernel/2+i][sizeKernel/2+j];
-                     g+=color.green()*kernel[sizeKernel/2+i][sizeKernel/2+j];
-                     b+=color.blue()*kernel[sizeKernel/2+i][sizeKernel/2+j];
-                    }
+                    color = QColor(image.pixel(x+i,y+j));
+                    r+=color.red()*kernel[sizeKernel/2+i][sizeKernel/2+j];
+                    g+=color.green()*kernel[sizeKernel/2+i][sizeKernel/2+j];
+                    b+=color.blue()*kernel[sizeKernel/2+i][sizeKernel/2+j];
                 }
-                r = qBound(0,r/sumKernel,255);
-                g = qBound(0,g/sumKernel,255);
-                b = qBound(0,b/sumKernel,255);
-                image.setPixel(x,y,qRgb( r,g,b));
             }
+            r = qBound(0,r/sumKernel,255);
+            g = qBound(0,g/sumKernel,255);
+            b = qBound(0,b/sumKernel,255);
+            image.setPixel(x,y,qRgb( r,g,b));
         }
-         return image;
+    }
+    return image;
 }
 
 
@@ -596,12 +596,12 @@ QImage MainWindow::junzhi(QImage image){
 void MainWindow::on_pushButton_junzhi_clicked()
 {
     if(origin_path!=nullptr){
-    QImage image(origin_path);
+        QImage image(origin_path);
         image=junzhi(image);
-             QImage Image=ImageCenter(image,ui->label_show);
-             ui->label_show->setPixmap(QPixmap::fromImage(Image));
-             ui->label_show->setAlignment(Qt::AlignCenter);
-}
+        QImage Image=ImageCenter(image,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
+    }
     else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
@@ -611,18 +611,18 @@ void MainWindow::on_pushButton_junzhi_clicked()
 //翻译
 void MainWindow::on_action_L_triggered()
 {
-        QTranslator translator;
-      if(language){
-          translator.load("E:/Qt/qtworks/MainWindow/zh_tr.qm");
-      }
-      else
-      {
-          translator.load("E:/Qt/qtworks/MainWindow/en_tr.qm");
-      }
-      QApplication *qapp;
-      qapp->installTranslator(&translator);
-      language=!language;
-      ui->retranslateUi(this);//重新翻译刷新界面
+    QTranslator translator;
+    if(language){
+        translator.load("E:/Qt/qtworks/MainWindow/zh_tr.qm");
+    }
+    else
+    {
+        translator.load("E:/Qt/qtworks/MainWindow/en_tr.qm");
+    }
+    QApplication *qapp;
+    qapp->installTranslator(&translator);
+    language=!language;
+    ui->retranslateUi(this);//重新翻译刷新界面
 }
 
 
@@ -630,8 +630,8 @@ void MainWindow::on_action_L_triggered()
 void MainWindow::on_horizontalSlider_valueChanged(int value)
 {
     if(origin_path!=nullptr){
-    QImage image(origin_path);
-    int red, green, blue;
+        QImage image(origin_path);
+        int red, green, blue;
         int pixels = image.width() * image.height();
         unsigned int *data = (unsigned int *)image.bits();
 
@@ -706,12 +706,12 @@ QImage MainWindow::bianyuan(QImage image){
 void MainWindow::on_pushButton_junzhi_2_clicked()
 {
     if(origin_path!=nullptr){
-    QImage image(origin_path);
-    QImage newImage =bianyuan(image);
-    QImage Image=ImageCenter(newImage,ui->label_show);
-    ui->label_show->setPixmap(QPixmap::fromImage(Image));
-    ui->label_show->setAlignment(Qt::AlignCenter);
-}
+        QImage image(origin_path);
+        QImage newImage =bianyuan(image);
+        QImage Image=ImageCenter(newImage,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
+    }
     else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
@@ -758,9 +758,9 @@ QImage MainWindow::fuhe(QImage images){
             image2.setPixel(x,y,qRgb(a,a,a));
         }
     }
-QImage image(origin_path);
-int red, green, blue;
-int red2,green2,blue2;
+    QImage image(origin_path);
+    int red, green, blue;
+    int red2,green2,blue2;
     int pixels = image.width() * image.height();
 
     unsigned int *data = (unsigned int *)image.bits();
@@ -847,10 +847,10 @@ void MainWindow::on_horizontalSlider_2_valueChanged(int value1)
                 image2.setPixel(x,y,qRgb(a,a,a));
             }
         }
-    QImage image(origin_path);
-//    QImage image2(label->pixmap()->toImage());
-    int red, green, blue;
-    int red2,green2,blue2;
+        QImage image(origin_path);
+        //    QImage image2(label->pixmap()->toImage());
+        int red, green, blue;
+        int red2,green2,blue2;
         int pixels = image.width() * image.height();
 
         unsigned int *data = (unsigned int *)image.bits();
@@ -886,70 +886,69 @@ void MainWindow::on_horizontalSlider_2_valueChanged(int value1)
 //保存
 void MainWindow::on_pushButton_save_clicked()
 {
-        if(ui->checkBox->isChecked()){//要加水印
-
+    if(ui->checkBox->isChecked()){//要加水印
         if(ui->label_show->pixmap()!=nullptr){
 
             QImage image2(ui->label_show->pixmap()->toImage());
             QImage simage("E:/Qt/qtworks/MainWindow/images/name1.png");
 
-                   int swidth = simage.width();
-                   int sheight = simage.height();
-                   int r,b,g;
+            int swidth = simage.width();
+            int sheight = simage.height();
+            int r,b,g;
 
-                   for(int i=0; i<sheight; ++i) {
-                       for(int j=0; j<swidth; ++j) {
-                          QColor oldcolor2=QColor(simage.pixel(j,i));
-                          r=oldcolor2.red();
-                          b=oldcolor2.blue();
-                          g=oldcolor2.green();
+            for(int i=0; i<sheight; ++i) {
+                for(int j=0; j<swidth; ++j) {
+                    QColor oldcolor2=QColor(simage.pixel(j,i));
+                    r=oldcolor2.red();
+                    b=oldcolor2.blue();
+                    g=oldcolor2.green();
 
-                          if(r==0&&b==0&&g==0)
-                          {
-                              image2.setPixelColor(j,i,qRgb(0,0,0));
-                          }else
-                          {
-                              //image.setPixelColor(j,i,qRgb(red,blue,green));
-                          }
-                       }
+                    if(r==0&&b==0&&g==0)
+                    {
+                        image2.setPixelColor(j,i,qRgb(0,0,0));
+                    }else
+                    {
+                        //image.setPixelColor(j,i,qRgb(red,blue,green));
+                    }
+                }
 
-                   }
+            }
 
 
-                QString filename = QFileDialog::getSaveFileName(this,
-                    tr("保存图片"),
-                    "E:/Qtworks/MainWindow/images/signed_images.png",
-                    tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
-                if (filename.isEmpty())
+            QString filename = QFileDialog::getSaveFileName(this,
+                                                            tr("保存图片"),
+                                                            "E:/Qtworks/MainWindow/images/signed_images.png",
+                                                            tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
+            if (filename.isEmpty())
+            {
+                return;
+            }
+            else
+            {
+                if (!(image2.save(filename))) //保存图像
                 {
+
+                    QMessageBox::information(this,
+                                             tr("图片保存成功！"),
+                                             tr("图片保存失败！"));
                     return;
                 }
-                else
-                {
-                    if (!(image2.save(filename))) //保存图像
-                    {
-
-                        QMessageBox::information(this,
-                            tr("图片保存成功！"),
-                            tr("图片保存失败！"));
-                        return;
-                    }
-                    ui->statusBar->showMessage("图片保存成功！");
-                }
+                ui->statusBar->showMessage("图片保存成功！");
+            }
 
         }
         else{
             QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
         }
 
-        }
-        else //不加水印
-        {
-            if(ui->label_show->pixmap()!=nullptr){
-                QString filename = QFileDialog::getSaveFileName(this,
-                tr("保存图片"),
-                "E:/Qtworks/MainWindow/images",
-                tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
+    }
+    else //不加水印
+    {
+        if(ui->label_show->pixmap()!=nullptr){
+            QString filename = QFileDialog::getSaveFileName(this,
+                                                            tr("保存图片"),
+                                                            "E:/Qtworks/MainWindow/images",
+                                                            tr("*.png;; *.jpg;; *.bmp;; *.tif;; *.GIF")); //选择路径
             if (filename.isEmpty())
             {
                 return;
@@ -960,8 +959,8 @@ void MainWindow::on_pushButton_save_clicked()
                 {
 
                     QMessageBox::information(this,
-                        tr("图片保存成功！"),
-                        tr("图片保存失败！"));
+                                             tr("图片保存成功！"),
+                                             tr("图片保存失败！"));
                     return;
                 }
                 ui->statusBar->showMessage("图片保存成功！");
@@ -970,7 +969,7 @@ void MainWindow::on_pushButton_save_clicked()
         }else{
             QMessageBox::warning(nullptr, "提示", "请先打开图片！", QMessageBox::Yes |  QMessageBox::Yes);
         }
-        }
+    }
 }
 
 
@@ -1116,17 +1115,17 @@ void MainWindow::on_pushButton_gamma_clicked()
 void MainWindow::on_horizontalSlider_erzhi_valueChanged(int value)
 {
     if(origin_path!=nullptr){
-    QImage image(origin_path);
-    QImage images=gray(image);
-    int height=images.height();
-    int width=images.width();
-            int bt;
-            QColor oldColor;
-            for (int i = 0; i < height; ++i)
-            {
-                for(int j=0;j<width;++j){
-                    oldColor = QColor(images.pixel(j,i));
-                    bt = oldColor.red();
+        QImage image(origin_path);
+        QImage images=gray(image);
+        int height=images.height();
+        int width=images.width();
+        int bt;
+        QColor oldColor;
+        for (int i = 0; i < height; ++i)
+        {
+            for(int j=0;j<width;++j){
+                oldColor = QColor(images.pixel(j,i));
+                bt = oldColor.red();
                 if(bt<value){
                     bt=0;
                 }else{
@@ -1134,12 +1133,12 @@ void MainWindow::on_horizontalSlider_erzhi_valueChanged(int value)
                 }
                 images.setPixel(j,i, qRgb(bt, bt, bt));
 
-                }
             }
-    QImage Image=ImageCenter(images,ui->label_show);
-    ui->label_show->setPixmap(QPixmap::fromImage(Image));
-    ui->label_show->setAlignment(Qt::AlignCenter);
-    ui->label_yuzhi->setText(QString::number(value));
+        }
+        QImage Image=ImageCenter(images,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
+        ui->label_yuzhi->setText(QString::number(value));
     }
     else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
@@ -1202,11 +1201,11 @@ QImage MainWindow::AdjustContrast(QImage image, int value)
 void MainWindow::on_horizontalSlider_duibi_valueChanged(int value)
 {
     if(origin_path!=nullptr){
-    QImage image(origin_path);
-    QImage images=AdjustContrast(image,value);
-    QImage Image=ImageCenter(images,ui->label_show);
-    ui->label_show->setPixmap(QPixmap::fromImage(Image));
-    ui->label_show->setAlignment(Qt::AlignCenter);
+        QImage image(origin_path);
+        QImage images=AdjustContrast(image,value);
+        QImage Image=ImageCenter(images,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
     }
     else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
@@ -1272,11 +1271,11 @@ QImage MainWindow::AdjustSaturation(QImage Img, int iSaturateValue)
 void MainWindow::on_horizontalSlider_baohe_valueChanged(int value)
 {
     if(origin_path!=nullptr){
-    QImage image(origin_path);
-    QImage images=AdjustSaturation(image,value);
-    QImage Image=ImageCenter(images,ui->label_show);
-    ui->label_show->setPixmap(QPixmap::fromImage(Image));
-    ui->label_show->setAlignment(Qt::AlignCenter);
+        QImage image(origin_path);
+        QImage images=AdjustSaturation(image,value);
+        QImage Image=ImageCenter(images,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
     }
     else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
@@ -1290,37 +1289,34 @@ void MainWindow::on_action_V_triggered()
 {
     QString video_path = QFileDialog::getOpenFileName(this,tr("选择视频"),"E:/Qt/qtworks/MainWindow/images",tr("Video (*.WMV *.mp4 *.rmvb *.flv)"));
     if(video_path!=nullptr){
-    //打开视频文件：其实就是建立一个VideoCapture结构
-    capture.open(video_path.toStdString());
-    //检测是否正常打开:成功打开时，isOpened返回ture
-    if (!capture.isOpened())
-        QMessageBox::warning(nullptr, "提示", "打开视频失败！", QMessageBox::Yes |  QMessageBox::Yes);
+        //打开视频文件：其实就是建立一个VideoCapture结构
+        capture.open(video_path.toStdString());
+        //检测是否正常打开:成功打开时，isOpened返回ture
+        if (!capture.isOpened())
+            QMessageBox::warning(nullptr, "提示", "打开视频失败！", QMessageBox::Yes |  QMessageBox::Yes);
         //ui->textEdit->append("fail to open!");
-    ui->tabWidget->setCurrentIndex(1);
-    ui->pushButton_6->setEnabled(true);
-    //获取整个帧数
-    long totalFrameNumber = capture.get(CAP_PROP_FRAME_COUNT);
-    //ui->textEdit->append(QString::fromLocal8Bit("totally %1 frames").arg(totalFrameNumber));
-    //ui->label_11->resize(QSize(capture.get(CAP_PROP_FRAME_WIDTH), capture.get(CAP_PROP_FRAME_HEIGHT)));
+        ui->tabWidget->setCurrentIndex(1);
+        ui->pushButton_6->setEnabled(true);
+        //获取整个帧数
+        long totalFrameNumber = capture.get(CAP_PROP_FRAME_COUNT);
 
-    //设置开始帧()
-    long frameToStart = 0;
-    capture.set(CAP_PROP_POS_FRAMES, frameToStart);
-    //ui->textEdit->append(QString::fromLocal8Bit("from %1 frame").arg(frameToStart));
 
-    //获取帧率
-    double rate = capture.get(CAP_PROP_FPS);
-    //ui->textEdit->append(QString::fromLocal8Bit("Frame rate: %1 ").arg(rate));
+        //设置开始帧()
+        long frameToStart = 0;
+        capture.set(CAP_PROP_POS_FRAMES, frameToStart);
+
+        //获取帧率
+        double rate = capture.get(CAP_PROP_FPS);
 
 
 
-    delay = 1000 / rate;
-    timer.start(delay);
-    type=0;
-    //timer.start();
-    isstart=!isstart;
-    ui->pushButton_6->setStyleSheet("border-radius:32px;"
-                                             "background-image: url(:/myImage/images/stop.png);border:none;") ;
+        delay = 1000 / rate;
+        timer.start(delay);
+        type=0;
+        //timer.start();
+        isstart=!isstart;
+        ui->pushButton_6->setStyleSheet("border-radius:32px;"
+                                        "background-image: url(:/myImage/images/stop.png);border:none;") ;
     }
 }
 
@@ -1375,17 +1371,17 @@ void MainWindow::onTimeout()
     }
     else if(type==2){
         cvtColor(frame, frame, CV_BGR2GRAY);
-            //高斯滤波
-            GaussianBlur(frame, frame, Size(3, 3),
-                0, 0, BORDER_DEFAULT);
-            //Canny检测
-            int edgeThresh =100;
-            Mat Canny_result;
-            Canny(frame, frame, edgeThresh, edgeThresh * 3, 3);
+        //高斯滤波
+        GaussianBlur(frame, frame, Size(3, 3),
+                     0, 0, BORDER_DEFAULT);
+        //Canny检测
+        int edgeThresh =100;
+        Mat Canny_result;
+        Canny(frame, frame, edgeThresh, edgeThresh * 3, 3);
     }else if(type==3)
     {
-         //Smooth(frame, frame,Size(3, 3), 0, 0);
-         GaussianBlur(frame, frame, Size(3, 3), 0, 0);
+        //Smooth(frame, frame,Size(3, 3), 0, 0);
+        GaussianBlur(frame, frame, Size(3, 3), 0, 0);
     }
     else if(type==4){
         cvtColor(frame,frame,CV_BGR2GRAY);
@@ -1408,7 +1404,7 @@ void MainWindow::onTimeout()
 
     //long totalFrameNumber = capture.get(CAP_PROP_POS_FRAMES);
 
-   // ui->textEdit->append(QString::fromLocal8Bit("正在读取第：第 %1 帧").arg(totalFrameNumber));
+    // ui->textEdit->append(QString::fromLocal8Bit("正在读取第：第 %1 帧").arg(totalFrameNumber));
 }
 
 
@@ -1467,12 +1463,12 @@ void MainWindow::on_pushButton_6_clicked()
         timer.stop();
         isstart=false;
         ui->pushButton_6->setStyleSheet("border-radius:32px;"
-                                                 "background-image: url(:/myImage/images/start.png);border:none;") ;
+                                        "background-image: url(:/myImage/images/start.png);border:none;") ;
     }else {
         timer.start(delay);
         isstart=true;
         ui->pushButton_6->setStyleSheet("border-radius:32px;"
-                                                 "background-image: url(:/myImage/images/stop.png);border:none;") ;
+                                        "background-image: url(:/myImage/images/stop.png);border:none;") ;
     }
 }
 
@@ -1512,6 +1508,11 @@ void MainWindow::on_pushButton_11_clicked()
     type=4;
 }
 
+//马赛克
+void MainWindow::on_pushButton_2_clicked()
+{
+    type=5;
+}
 
 //缩放
 void MainWindow::on_horizontalSlider_suofang_valueChanged(int value)
@@ -1524,48 +1525,44 @@ void MainWindow::on_horizontalSlider_suofang_valueChanged(int value)
 
 
 Mat MainWindow::masaike(Mat src){
-        int width = src.rows;	//图片的长度
-        int height = src.cols;	//图片的宽度
+    int width = src.rows;	//图片的长度
+    int height = src.cols;	//图片的宽度
 
-        //10*10的像素点进行填充
-        int arr = 10;
+    //10*10的像素点进行填充
+    int arr = 10;
 
-        //i和j代表了矩形区域的左上角的像素坐标
-        for (int i = width/2.5; i < width/1.5; i+=arr) {
-            for (int j = height/2.5; j < height/1.5; j+=arr) {
+    //i和j代表了矩形区域的左上角的像素坐标
+    for (int i = width/2.5; i < width/1.5; i+=arr) {
+        for (int j = height/2.5; j < height/1.5; j+=arr) {
             //对矩形区域内的每一个像素值进行遍历
-                for (int k = i; k < arr + i && k < width; k++) {
-                    for (int m = j; m < arr + j && m < height; m++) {
-                        //在这里进行颜色的修改
-                        src.at<Vec3b>(k, m)[0] = src.at<Vec3b>(i, j)[0];
-                        src.at<Vec3b>(k, m)[1] = src.at<Vec3b>(i, j)[1];
-                        src.at<Vec3b>(k, m)[2] = src.at<Vec3b>(i, j)[2];
-                    }
+            for (int k = i; k < arr + i && k < width; k++) {
+                for (int m = j; m < arr + j && m < height; m++) {
+                    //在这里进行颜色的修改
+                    src.at<Vec3b>(k, m)[0] = src.at<Vec3b>(i, j)[0];
+                    src.at<Vec3b>(k, m)[1] = src.at<Vec3b>(i, j)[1];
+                    src.at<Vec3b>(k, m)[2] = src.at<Vec3b>(i, j)[2];
                 }
             }
         }
-        return src;
+    }
+    return src;
 }
 
 
-//马赛克
-void MainWindow::on_pushButton_2_clicked()
-{
-    type=5;
-}
+
 
 
 //工具栏灰度化
 void MainWindow::on_action_H_triggered()
 {
     if(origin_path!=nullptr){
-    QImage image(origin_path);
+        QImage image(origin_path);
 
-    QImage images=gray(image);
+        QImage images=gray(image);
 
-    QImage Image=ImageCenter(images,ui->label_show);
-    ui->label_show->setPixmap(QPixmap::fromImage(Image));
-    ui->label_show->setAlignment(Qt::AlignCenter);
+        QImage Image=ImageCenter(images,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
     }
     else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
@@ -1577,12 +1574,12 @@ void MainWindow::on_action_H_triggered()
 void MainWindow::on_action_J_triggered()
 {
     if(origin_path!=nullptr){
-    QImage image(origin_path);
+        QImage image(origin_path);
         image=junzhi(image);
-             QImage Image=ImageCenter(image,ui->label_show);
-             ui->label_show->setPixmap(QPixmap::fromImage(Image));
-             ui->label_show->setAlignment(Qt::AlignCenter);
-}
+        QImage Image=ImageCenter(image,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
+    }
     else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
@@ -1593,12 +1590,12 @@ void MainWindow::on_action_J_triggered()
 void MainWindow::on_action_B_triggered()
 {
     if(origin_path!=nullptr){
-    QImage image(origin_path);
-    QImage newImage =bianyuan(image);
-    QImage Image=ImageCenter(newImage,ui->label_show);
-    ui->label_show->setPixmap(QPixmap::fromImage(Image));
-    ui->label_show->setAlignment(Qt::AlignCenter);
-}
+        QImage image(origin_path);
+        QImage newImage =bianyuan(image);
+        QImage Image=ImageCenter(newImage,ui->label_show);
+        ui->label_show->setPixmap(QPixmap::fromImage(Image));
+        ui->label_show->setAlignment(Qt::AlignCenter);
+    }
     else{
         QMessageBox::warning(nullptr, "提示", "请先选择一张图片！", QMessageBox::Yes |  QMessageBox::Yes);
     }
@@ -1638,9 +1635,9 @@ void MainWindow::on_action_Y_triggered()
 
 void MainWindow::on_action_About_triggered()
 {
-      customMsgBox.show();
+    customMsgBox.show();
 
-      customMsgBox.exec();
+    customMsgBox.exec();
 }
 
 //左转
